@@ -8,16 +8,16 @@ import com.at.internship.lib.specification.SpecificationUtils;
 
 import java.util.List;
 
-public class CsvContactRepository extends AbstractRepository<Contact, Integer> implements IContactRepository {
+public class CsvContactRepositoryImpl extends AbstractRepository<Contact, Integer> implements IContactRepository {
     private static int ID_SEQUENCE = 0;
-    private static CsvContactRepository SINGLETON;
+    private static CsvContactRepositoryImpl SINGLETON;
 
-    public static CsvContactRepository getSingleton() {
-        if(SINGLETON == null) SINGLETON = new CsvContactRepository();
+    public static CsvContactRepositoryImpl getSingleton() {
+        if(SINGLETON == null) SINGLETON = new CsvContactRepositoryImpl();
         return SINGLETON;
     }
 
-    CsvContactRepository() {
+    CsvContactRepositoryImpl() {
         super(new ContactSerializer());
         ID_SEQUENCE = findAll().stream().map(Contact::getId).max(Integer::compare).orElse(0);
     }

@@ -9,24 +9,24 @@ import com.at.internship.schedule.serialization.csv.AppointmentSerializer;
 import java.time.LocalDate;
 import java.util.List;
 
-public class CsvAppointmentRepository extends AbstractRepository<Appointment, Integer> implements IAppointmentRepository {
+public class CsvAppointmentRepositoryImpl extends AbstractRepository<Appointment, Integer> implements IAppointmentRepository {
     private static int ID_SEQUENCE = 0;
-    private static CsvAppointmentRepository SINGLETON;
+    private static CsvAppointmentRepositoryImpl SINGLETON;
 
-    public static CsvAppointmentRepository getSingleton() {
-        if(SINGLETON == null) SINGLETON = new CsvAppointmentRepository();
+    public static CsvAppointmentRepositoryImpl getSingleton() {
+        if(SINGLETON == null) SINGLETON = new CsvAppointmentRepositoryImpl();
         return SINGLETON;
     }
 
-    private CsvContactRepository contactRepository;
+    private CsvContactRepositoryImpl contactRepository;
 
-    private CsvAppointmentRepository() {
+    private CsvAppointmentRepositoryImpl() {
         super(new AppointmentSerializer());
     }
 
-    private CsvContactRepository getContactRepository() {
+    private CsvContactRepositoryImpl getContactRepository() {
         if(contactRepository == null)
-            contactRepository = CsvContactRepository.getSingleton();
+            contactRepository = CsvContactRepositoryImpl.getSingleton();
         return contactRepository;
     }
 

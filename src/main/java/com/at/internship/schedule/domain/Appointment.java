@@ -7,22 +7,13 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Data
-@NoArgsConstructor
 public class Appointment {
     private Integer id;
     private Integer contactId;
     private LocalDateTime time;
     private String subject;
+    // Lazy load contacts
     private Contact contact;
-
-    public Appointment(Appointment source) {
-        if(source == null)
-            return;
-        this.id = source.id;
-        this.contactId = source.contactId;
-        this.time = source.time;
-        this.subject = source.subject;
-    }
 
     @Override
     public boolean equals(Object o) {

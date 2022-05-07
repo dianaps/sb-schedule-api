@@ -4,28 +4,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Data
-@NoArgsConstructor
 public class Contact {
     private Integer id;
     private String firstName;
     private String lastName;
     private String emailAddress;
-    private String phoneNumber;
     private LocalDate birthDay;
-
-    public Contact(Contact source) {
-        if(source == null)
-            return;
-        this.id = source.id;
-        this.firstName = source.firstName;
-        this.lastName = source.lastName;
-        this.emailAddress = source.emailAddress;
-        this.phoneNumber = source.phoneNumber;
-        this.birthDay = source.birthDay;
-    }
+    // Lazy load contactPhones
+    private List<ContactPhone> contactPhones;
+    // Lazy load appointments
+    private List<Appointment> appointments;
 
     @Override
     public boolean equals(Object o) {
